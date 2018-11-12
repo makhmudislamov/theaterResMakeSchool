@@ -2,14 +2,34 @@ var express = require('express');
 var app = express();
 
 
-
-app.get('/', => (req, res) {
-  res.json({'stub': `[${req.originalUrl}] Endpoint works! Replace me in Part 2.`});
+// INDEX
+app.get('/', (req, res) => {
+  res.json({
+        "_id" : 1
+        , "name" : "The Royal"
+        , "seats" : [ [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+        , [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+        , [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+        , [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+        , [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ]
+        , "seatsAvailable" : 80
+    });
 });
 
+// SHOW SEATS
+app.get( '/theatre/shows/:showsId', (req, res) => {
+    res.send('available seats will show up here for this movie');
+});
+
+// SHOW RESERVATION FORM
+app.get( '/theatre/shows/:showId/reservations', (req, res) => {
+    res.send('reservation form')
+})
+
+// LISTEN
 app.listen(3000, () => {
-  console.log('Example app listening on port 3000!'));
-}
+  console.log('Example app listening on port 3000!');
+})
 
 
 // 1. (INDEX) GET >>> theatre/shows >>> SHOWS list of shows/movie in the theatre
