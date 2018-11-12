@@ -46,6 +46,13 @@ app.put( '/theatre/shows/:showId/reservations/:id', (req, res) => {
     res.redirect(`/theatre/shows/:showId/reservations/:id`);
 });
 
+// DELETE
+app.delete( '/theatre/shows/:showId/reservations/:id', (req, res) => {
+    findOneAndDelete({_id: id}).then( reservations => {
+        res.redirect(`/theatre/shows/:showId/reservations`);
+    });
+});
+
 // LISTEN
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
