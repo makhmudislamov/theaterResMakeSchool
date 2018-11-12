@@ -2,15 +2,62 @@ var express = require('express');
 var app = express();
 
 
+// Paste this at the top of `server.js`
+const MongoClient = require('mongodb').MongoClient;
+const assert = require('assert');
 
-app.get('/', => (req, res) {
-  res.json({'stub': `[${req.originalUrl}] Endpoint works! Replace me in Part 2.`});
+const url = 'mongodb://localhost:27017';
+const dbName = 'Theatres';
+let db;
+
+
+
+
+
+db.collection('Theatres').insertOne(
+    {
+        "_id" : 1
+      , "name" : "The Royal"
+      , "seats" : [ [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+        , [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+        , [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+        , [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+        , [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ]
+      , "seatsAvailable" : 80
+    }, (err, result) => {
+    if (err){
+        return console.log('Unable to add theatre')
+    }
+    console.log(JSON.stringify(result.ops[0]._id.getTimestamp(), undefined, 2))
+})
+
+
+
+
+
+
+
+// Use connect method to connect to the server.
+// Paste this inside `app.listen` callback!
+
+
+
+app.get('/', function (req, res) {
+    res.json({movies: ['Rush Hour 2', 'Star Wars', 'Shawshank', 'Prisonbreak']})
 });
 
-app.listen(3000, () => {
-  console.log('Example app listening on port 3000!'));
-}
 
+app.listen(3000, () => {
+
+    MongoClient.connect(url, function(err, client) {
+      assert.equal(null, err);
+      console.log("Connected successfully to server");
+
+      db = client.db(dbName);
+    });
+
+  console.log('Example app listening on port 3000!')
+})
 
 // 1. (INDEX) GET >>> theatre/shows >>> SHOWS list of shows/movie in the theatre
 // 2. GET >>> theatre/shows/:showId >>> SHOWS list of all available seats for this particular show
