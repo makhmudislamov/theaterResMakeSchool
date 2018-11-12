@@ -3,7 +3,7 @@ var app = express();
 
 
 // INDEX
-app.get('/shows', (req, res) => {
+app.get('/theatre/shows', (req, res) => {
     res.send('list of movies');
 });
 
