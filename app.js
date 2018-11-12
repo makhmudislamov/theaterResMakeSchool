@@ -3,7 +3,7 @@ var app = express();
 
 
 // INDEX
-app.get('/', (req, res) => {
+app.get('/shows', (req, res) => {
   res.json({
         "_id" : 1
         , "name" : "The Royal"
