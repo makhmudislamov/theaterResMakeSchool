@@ -4,7 +4,12 @@ var app = express();
 
 // INDEX
 app.get('/shows', (req, res) => {
-  res.json({
+    res.send('list of movies');
+});
+
+// SHOW SEATS
+app.get( '/theatre/shows/:showsId', (req, res) => {
+    res.json({
         "_id" : 1
         , "name" : "The Royal"
         , "seats" : [ [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
@@ -14,11 +19,6 @@ app.get('/shows', (req, res) => {
         , [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ]
         , "seatsAvailable" : 80
     });
-});
-
-// SHOW SEATS
-app.get( '/theatre/shows/:showsId', (req, res) => {
-    res.send('available seats will show up here for this movie');
 });
 
 // SHOW RESERVATION FORM
