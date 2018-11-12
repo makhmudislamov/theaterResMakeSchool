@@ -31,12 +31,20 @@ app.post( '/theatre/shows/:showId/reservations', (req, res) => {
     res.redirect(`/theatre/shows/:showId/reservations`);
 });
 
+// SHOW ONE RESERVATION
+app.get('/theatre/shows/:showId/reservations/:id', (req, res) => {
+    res.send('show info for ONE reservation');
+});
+ 
 // SHOW Reservation to EDIT
 app.get( '/theatre/shows/:showId/reservations/:id/edit', (req, res) => {
     res.send('show ONE previously made reservation');
 });
 
 // UPDATE 
+app.put( '/theatre/shows/:showId/reservations/:id', (req, res) => {
+    res.redirect(`/theatre/shows/:showId/reservations/:id`);
+});
 
 // LISTEN
 app.listen(3000, () => {
